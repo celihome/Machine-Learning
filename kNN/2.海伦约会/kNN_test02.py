@@ -267,7 +267,7 @@ def classifyPerson():
 	#返回分类结果
 	classifierResult = classify0(norminArr, normMat, datingLabels, 3)
 	#打印结果
-	print("你可能%s这个人" % (resultList[classifierResult-1]))
+	print("你可能%s这个人" % (resultList[classifierResult]))
 
 """
 函数说明:main函数
