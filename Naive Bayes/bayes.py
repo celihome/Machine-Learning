@@ -10,12 +10,6 @@ Parameters:
 Returns:
 	postingList - 实验样本切分的词条
 	classVec - 类别标签向量
-Author:
-	Jack Cui
-Blog:
-	http://blog.csdn.net/c406495762
-Modify:
-	2017-08-11
 """
 def loadDataSet():
 	postingList=[['my', 'dog', 'has', 'flea', 'problems', 'help', 'please'],				#切分的词条
@@ -34,18 +28,12 @@ Parameters:
 	dataSet - 整理的样本数据集
 Returns:
 	vocabSet - 返回不重复的词条列表，也就是词汇表
-Author:
-	Jack Cui
-Blog:
-	http://blog.csdn.net/c406495762
-Modify:
-	2017-08-11
 """
 def createVocabList(dataSet):
 	vocabSet = set([])  					#创建一个空的不重复列表
 	for document in dataSet:				
-		vocabSet = vocabSet | set(document) #取并集
-	return list(vocabSet)
+		vocabSet = vocabSet | set(document) #取并集，set（）返回一个不重复的字典
+	return list(vocabSet)                       #将字典转化为列表
 
 """
 函数说明:根据vocabList词汇表，将inputSet向量化，向量的每个元素为1或0
@@ -55,20 +43,14 @@ Parameters:
 	inputSet - 切分的词条列表
 Returns:
 	returnVec - 文档向量,词集模型
-Author:
-	Jack Cui
-Blog:
-	http://blog.csdn.net/c406495762
-Modify:
-	2017-08-11
 """
 def setOfWords2Vec(vocabList, inputSet):
-	returnVec = [0] * len(vocabList)									#创建一个其中所含元素都为0的向量
-	for word in inputSet:												#遍历每个词条
-		if word in vocabList:											#如果词条存在于词汇表中，则置1
+	returnVec = [0] * len(vocabList)					#创建一个其中所含元素都为0的向量
+	for word in inputSet:							#遍历每个词条
+		if word in vocabList:				         	#如果词条存在于词汇表中，则置1
 			returnVec[vocabList.index(word)] = 1
 		else: print("the word: %s is not in my Vocabulary!" % word)
-	return returnVec													#返回文档向量
+	return returnVec							#返回文档向量
 
 
 """
@@ -81,12 +63,6 @@ Returns:
 	p0Vect - 非的条件概率数组
 	p1Vect - 侮辱类的条件概率数组
 	pAbusive - 文档属于侮辱类的概率
-Author:
-	Jack Cui
-Blog:
-	http://blog.csdn.net/c406495762
-Modify:
-	2017-08-12
 """
 def trainNB0(trainMatrix,trainCategory):
 	numTrainDocs = len(trainMatrix)							#计算训练的文档数目
@@ -116,12 +92,6 @@ Parameters:
 Returns:
 	0 - 属于非侮辱类
 	1 - 属于侮辱类
-Author:
-	Jack Cui
-Blog:
-	http://blog.csdn.net/c406495762
-Modify:
-	2017-08-12
 """
 def classifyNB(vec2Classify, p0Vec, p1Vec, pClass1):
 	p1 = reduce(lambda x,y:x*y, vec2Classify * p1Vec) * pClass1    			#对应元素相乘
@@ -140,12 +110,6 @@ Parameters:
 	无
 Returns:
 	无
-Author:
-	Jack Cui
-Blog:
-	http://blog.csdn.net/c406495762
-Modify:
-	2017-08-12
 """
 def testingNB():
 	listOPosts,listClasses = loadDataSet()									#创建实验样本
