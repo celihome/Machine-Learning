@@ -258,8 +258,8 @@ Modify:
 """
 def get_w(dataMat, labelMat, alphas):
     alphas, dataMat, labelMat = np.array(alphas), np.array(dataMat), np.array(labelMat)
-    w = np.dot((np.tile(labelMat.reshape(1, -1).T, (1, 2)) * dataMat).T, alphas)
-    return w.tolist()
+    w = np.dot((np.tile(labelMat.reshape(1, -1).T, (1, 2)) * dataMat).T, alphas)#数据的维数2，故w为二维
+    return w.tolist()  #tolist将数组或矩阵转化为列表
 
 
 if __name__ == '__main__':
