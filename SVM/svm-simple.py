@@ -222,19 +222,20 @@ def showClassifer(dataMat, w, b):
 	plt.scatter(np.transpose(data_plus_np)[0], np.transpose(data_plus_np)[1], s=30, alpha=0.7)   #正样本散点图
 	plt.scatter(np.transpose(data_minus_np)[0], np.transpose(data_minus_np)[1], s=30, alpha=0.7) #负样本散点图
 	#绘制直线
-	x1 = max(dataMat)[0]
+	x1 = max(dataMat)[0]#选取两个点的横坐标
 	x2 = min(dataMat)[0]
 	a1, a2 = w
 	b = float(b)
-	a1 = float(a1[0])
+	a1 = float(a1[0])#a1为一数列，先取数列里的数在在取浮点数
 	a2 = float(a2[0])
 	y1, y2 = (-b- a1*x1)/a2, (-b - a1*x2)/a2
-	plt.plot([x1, x2], [y1, y2])
+	plt.plot([x1, x2], [y1, y2])#两点绘制一条曲线
 	#找出支持向量点
 	for i, alpha in enumerate(alphas):
 		if abs(alpha) > 0:
 			x, y = dataMat[i]
 			plt.scatter([x], [y], s=150, c='none', alpha=0.7, linewidth=1.5, edgecolor='red')
+			#c为点的颜色，alpha所选择的点的比例，linweidth表点周围线的长度，edgecolor表线的颜色
 	plt.show()
 
 
